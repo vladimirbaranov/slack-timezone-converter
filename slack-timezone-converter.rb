@@ -51,7 +51,7 @@ JSON.parse(response.body)['members'].each do |user|
     label = key + ' / ' + label
   end
   timezones[label] = offset unless timezones.has_value?(offset)
-  users[user['id']] = { offset: offset, tz: ActiveSupport::TimeZone[offset].tzinfo.name }
+  users[user['id']] = { offset: offset, tz: user['tz'] }
 end
 
 timezones = timezones.sort_by{ |key, value| value }
